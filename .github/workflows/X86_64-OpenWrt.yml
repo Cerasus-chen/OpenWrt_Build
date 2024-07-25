@@ -12,6 +12,7 @@ env:
   DIY_SCRIPT: diy-script.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
+  SSH_ACTIONS: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
   FIRMWARE_TAG: X86_64
@@ -114,6 +115,10 @@ jobs:
         $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
         $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
 
+    - name: SSH远程连接服务器配置固件
+      uses: P3TERX/debugger-action@main
+      if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
+    
     - name: Download DL Package
       run: |
         cd $OPENWRT_PATH
