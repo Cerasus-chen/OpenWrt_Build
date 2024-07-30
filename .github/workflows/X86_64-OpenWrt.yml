@@ -103,7 +103,7 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
-    - name: Start SSH via tmate
+    - name: SSH_ACTIONS
       uses: P3TERX/ssh2actions@main
   # Send connection info to Telegram (optional)
   # You can find related documents here: https://core.telegram.org/bots
